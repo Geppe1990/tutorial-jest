@@ -1,4 +1,4 @@
-import { sum, myFunction } from "./functions";
+import { sum, myFunction, fetchData } from "./functions";
 
 test("adds 1 + 2 to equal 3", () => {
 	expect(sum(1, 2)).toBe(3)
@@ -31,4 +31,17 @@ test("throws on invalid input", () => {
 	expect(
 		() => myFunction("123")
 	).toThrow()
+})
+
+test("the data is peanut butter", done => {
+	function callback(data) {
+		try {
+			expect(data).toBe("peanut butter")
+			done();
+		} catch (error) {
+			done(error);
+		}
+	}
+
+	fetchData(callback);
 })
